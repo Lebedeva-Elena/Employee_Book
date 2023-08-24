@@ -7,7 +7,11 @@ import java.util.Collection;
 public interface EmployeeService {
     Employee addEmployee(String firstName, String lastName);
 
+    Employee addEmployee(String firstName, String lastName, int department, double salary);
+
     Employee remoteEmployee(String firstName, String lastName);
+
+    Employee removeEmployee(String firstName, String lastName);
 
     Employee getEmployee(String firstName, String lastName);
 

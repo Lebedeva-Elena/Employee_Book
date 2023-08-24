@@ -13,14 +13,15 @@ import java.util.Collection;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     @GetMapping("/add")
-    public Employee addEmployee(@RequestParam String firstName, @RequestParam String lastName) {
+    public Employee addEmployee(@RequestParam String firstName, @RequestParam String lastName,
+                                @RequestParam int department, @RequestParam double salary) {
         return employeeService.addEmployee(firstName, lastName);
 
     }
