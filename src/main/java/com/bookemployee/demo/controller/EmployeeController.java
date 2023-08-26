@@ -13,7 +13,7 @@ import java.util.Collection;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -22,7 +22,7 @@ public class EmployeeController {
     @GetMapping("/add")
     public Employee addEmployee(@RequestParam String firstName, @RequestParam String lastName,
                                 @RequestParam int department, @RequestParam double salary) {
-        return employeeService.addEmployee(firstName, lastName);
+        return employeeService.addEmployee(firstName, lastName, department,salary);
 
     }
 

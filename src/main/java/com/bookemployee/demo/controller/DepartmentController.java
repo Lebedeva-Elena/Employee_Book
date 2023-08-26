@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/departments")
 public class DepartmentController {
-    private final DepartmentService departmentService;
+    private DepartmentService departmentService;
 
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
@@ -23,4 +22,16 @@ public class DepartmentController {
         return departmentService.getAll();
 
     }
+
+    @GetMapping("/max-salary ")
+    public Employee maxSalaryEmployee(int department) {
+        return departmentService.maxSalaryEmployee(department);
+    }
+
+    @GetMapping("/min-salary")
+    public Employee minSalaryEmployee(int department) {
+        return departmentService.minSalaryEmployee(department);
+    }
+
+
 }
