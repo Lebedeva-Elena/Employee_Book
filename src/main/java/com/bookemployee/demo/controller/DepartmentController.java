@@ -4,6 +4,7 @@ import com.bookemployee.demo.dto.Employee;
 import com.bookemployee.demo.service.DepartmentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -11,7 +12,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/departments")
 public class DepartmentController {
-    private DepartmentService departmentService;
+    private final DepartmentService departmentService;
 
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
@@ -24,18 +25,18 @@ public class DepartmentController {
     }
 
     @GetMapping("/max-salary")
-    public Employee maxSalaryEmployee(int department) {
-        return departmentService.maxSalaryEmployee(department);
+    public Employee maxSalaryEmployee(@RequestParam int departmentId) {
+        return departmentService.maxSalaryEmployee(departmentId);
     }
 
     @GetMapping("/min-salary")
-    public Employee minSalaryEmployee(int department) {
-        return departmentService.minSalaryEmployee(department);
+    public Employee minSalaryEmployee(@RequestParam int departmentId) {
+        return departmentService.minSalaryEmployee(departmentId);
     }
 
-    @GetMapping("/all")
-    public Collection<Employee> getEmployeeInDepartment(int department) {
-        return departmentService.getEmployeeInDepartment(department);
+    @GetMapping(path = "/all", params = {"departmentId"})
+    public Collection<Employee> getEmployeeInDepartment(@RequestParam int departmentId) {
+        return departmentService.getEmployeeInDepartment(departmentId);
 
     }
 
