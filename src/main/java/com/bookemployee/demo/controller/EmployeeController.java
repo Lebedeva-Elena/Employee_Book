@@ -2,6 +2,7 @@ package com.bookemployee.demo.controller;
 
 import com.bookemployee.demo.dto.Employee;
 import com.bookemployee.demo.service.EmployeeService;
+import com.bookemployee.demo.util.EmployeeNameValidator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,17 +23,20 @@ public class EmployeeController {
     @GetMapping("/add")
     public Employee addEmployee(@RequestParam String firstName, @RequestParam String lastName,
                                 @RequestParam int department, @RequestParam double salary) {
-        return employeeService.addEmployee(firstName, lastName, department,salary);
+        EmployeeNameValidator.validateIsAlpha(firstName, lastName);
+        return employeeService.addEmployee(firstName, lastName, department, salary);
 
     }
 
     @GetMapping("/remove")
     public Employee removeEmployee(@RequestParam String firstName, @RequestParam String lastName) {
+        EmployeeNameValidator.validateIsAlpha(firstName, lastName);
         return employeeService.remoteEmployee(firstName, lastName);
     }
 
     @GetMapping("/find")
     public Employee findEmployee(String firstName, String lastName) {
+        EmployeeNameValidator.validateIsAlpha(firstName, lastName);
         return employeeService.getEmployee(firstName, lastName);
     }
 

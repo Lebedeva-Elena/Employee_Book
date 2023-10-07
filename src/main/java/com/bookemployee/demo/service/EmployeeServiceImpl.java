@@ -4,6 +4,7 @@ import com.bookemployee.demo.dto.Employee;
 import com.bookemployee.demo.exception.EmployeeAlreadyAddedException;
 import com.bookemployee.demo.exception.EmployeeNotFoundException;
 import com.bookemployee.demo.exception.EmployeeStorageIsFullException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -35,7 +36,11 @@ public  class EmployeeServiceImpl implements EmployeeService {
         if (employeeMap.containsKey(key)) {
             throw new EmployeeAlreadyAddedException();
         }
-        Employee employee = new Employee(firstName, lastName,department,salary);
+        Employee employee = new Employee(
+                StringUtils.capitalize(firstName),
+                StringUtils.capitalize(lastName),
+                department,
+                salary);
         employeeMap.put(key, employee);
         return employee;
     }
