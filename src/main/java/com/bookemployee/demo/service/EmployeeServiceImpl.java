@@ -52,6 +52,12 @@ public  class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee removeEmployee(String firstName, String lastName) {
+        return null;
+    }
+
+
+    @Override
+    public Employee removeEmployee(String firstName, String lastName, int department, double salary) {
 
         String key = generateKey(firstName, lastName);
 
@@ -88,4 +94,6 @@ public  class EmployeeServiceImpl implements EmployeeService {
         return firstName + lastName;
 
     }
+
+
 }

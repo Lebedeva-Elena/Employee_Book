@@ -12,7 +12,8 @@ public interface DepartmentService {
 
     Employee minSalaryEmployee(int department);
 
-    Collection<Employee> getEmployeeInDepartment(int department);
+    Collection<Employee> getEmployeesInDepartment(int department);
+
 
     Map<Integer, List<Employee>> getAll();
 }

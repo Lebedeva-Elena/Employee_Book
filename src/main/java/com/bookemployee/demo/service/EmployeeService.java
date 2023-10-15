@@ -13,6 +13,8 @@ public interface EmployeeService {
 
     Employee removeEmployee(String firstName, String lastName);
 
+    Employee removeEmployee(String firstName, String lastName, int department, double salary);
+
     Employee getEmployee(String firstName, String lastName);
 
     Collection<Employee> findAll();

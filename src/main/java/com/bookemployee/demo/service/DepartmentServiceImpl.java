@@ -35,8 +35,7 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
-    @Override
-    public Collection<Employee> getEmployeeInDepartment(int department) {
+    public Collection<Employee> getEmployeesInDepartment(int department) {
         return employeeService.findAll().stream()
                 .filter(e->e.getDepartment() == department)
                 .collect(Collectors.toUnmodifiableList());
