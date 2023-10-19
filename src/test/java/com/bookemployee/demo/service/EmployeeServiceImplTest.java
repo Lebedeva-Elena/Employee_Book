@@ -70,6 +70,8 @@ class EmployeeServiceImplTest {
 
     @Test
     void removeEmployee_shouldThrowExceptionWhenRemoveEmployeeNotFoundInMap() {
+        underTest.addEmployee(expectedEmployee.getFirstName(), expectedEmployee.getLastName(),
+                expectedEmployee.getDepartment(), expectedEmployee.getSalary());
         underTest.removeEmployee(expectedEmployee.getFirstName(), expectedEmployee.getLastName(),
                     expectedEmployee.getDepartment(), expectedEmployee.getSalary());
 
@@ -82,7 +84,10 @@ class EmployeeServiceImplTest {
 
     @Test
     void getEmployee_shouldGetEmployeeToMapAndReturnEmployee() {
-        Employee result = underTest.getEmployee(expectedEmployee.getFirstName(), expectedEmployee.getLastName());
+        underTest.addEmployee(expectedEmployee.getFirstName(), expectedEmployee.getLastName(),
+                expectedEmployee.getDepartment(), expectedEmployee.getSalary());
+        Employee result = underTest.getEmployee(expectedEmployee.getFirstName(),
+                expectedEmployee.getLastName());
 
         assertTrue(underTest.findAll().contains(expectedEmployee));
         assertEquals(expectedEmployee, result);
@@ -91,6 +96,12 @@ class EmployeeServiceImplTest {
 
     @Test
     void getEmployee_shouldThrowExceptionWhenGetEmployeeNotFound() {
+        underTest.addEmployee(expectedEmployee.getFirstName(), expectedEmployee.getLastName(),
+                expectedEmployee.getDepartment(), expectedEmployee.getSalary());
+        underTest.getEmployee(expectedEmployee.getFirstName(), expectedEmployee.getLastName());
+
+        assertThrows(EmployeeNotFoundException.class, () -> underTest.getEmployee(
+                expectedEmployee.getFirstName(), expectedEmployee.getLastName()));
 
     }
 
